@@ -14,8 +14,16 @@ See the [full list of supported file formats](https://github.com/algoo/preview-g
 Boot up the service:
 
 ```bash
-docker run -p 8000:8000 fpurchess/preview-service
+docker build -t preview-service .
 ```
+
+
+```bash
+docker run -p 8000:8000 -v /tmp/cache/:/tmp/cache/ -v /tmp/files/:/tmp/files/ preview-service
+```
+
+**INFO** : You may need to update /tmp/cachec and /tmp/files permissions.
+
 
 Use it to create a thumbnail:
 
@@ -30,9 +38,6 @@ curl -o thumbnail.jpeg -F 'file=file_to_preview.pdf' http://localhost:8000/previ
 
 Here's a full example:
 
-```bash
-docker run -p 8000:8000 -v /tmp/cache/:/tmp/cache/ -v /tmp/files/:/tmp/files/ fpurchess/preview-service
-```
 
 ## API
 
